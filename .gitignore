@@ -8,3 +8,16 @@ wheels/
 
 # Virtual environments
 .venv
+
+# Env files
+.env
+.env.local
+.env.*.local
+
+# Logs
+logs/
+*.log
+
+# Coding bot files
+GEMINI.md
+CLAUDE.md
