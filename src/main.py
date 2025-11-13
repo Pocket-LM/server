@@ -1,7 +1,6 @@
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-
 from src.configs import settings
 from src.routers import entry_router
 from src.utils.logging import get_logger
@@ -39,6 +38,17 @@ def create_application() -> FastAPI:
 
 
 app = create_application()
+
+
+# Health check endpoint
+@app.get("/health", summary="Health Check")
+async def health_check():
+    return {
+        "success": True,
+        "status": "success",
+        "message": "Service is running",
+        "data": None,
+    }
 
 
 if __name__ == "__main__":

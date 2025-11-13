@@ -1,10 +1,6 @@
 from fastapi import APIRouter
-
-from src.utils.response_builder import ResponseBuilder
+from .capture import capture_router
 
 entry_router = APIRouter()
 
-
-@entry_router.get("/health", summary="Health Check")
-async def health_check():
-    return ResponseBuilder.success(message="Service is healthy")
+entry_router.include_router(capture_router, prefix="/capture", tags=["capture"])

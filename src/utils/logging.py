@@ -1,6 +1,5 @@
 import logging
 import sys
-
 from logging import Formatter, StreamHandler, getLogger
 
 # Define the format for the logs
@@ -38,6 +37,14 @@ uvicorn_error_logger.handlers.clear()
 uvicorn_error_logger.setLevel(logging.INFO)
 uvicorn_error_logger.addHandler(stream_handler)
 uvicorn_error_logger.propagate = False
+
+
+# Configure the watchfiles logger
+watchfiles_logger = getLogger("watchfiles")
+watchfiles_logger.handlers.clear()
+watchfiles_logger.setLevel(logging.INFO)
+watchfiles_logger.addHandler(stream_handler)
+watchfiles_logger.propagate = False
 
 
 def get_logger(name: str) -> logging.Logger:

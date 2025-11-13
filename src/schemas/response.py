@@ -1,8 +1,7 @@
 from enum import Enum
 from typing import Any, Optional
 from pydantic import Field
-
-from src.schemas.custom_base_model import CamelCaseBaseModel as BaseModel
+from src.schemas.custom_base_model import CamelCaseBaseModel
 
 
 class ResponseStatus(str, Enum):
@@ -13,7 +12,7 @@ class ResponseStatus(str, Enum):
     WARNING = "warning"
 
 
-class ApiResponse(BaseModel):
+class ApiResponse(CamelCaseBaseModel):
     """Standardized API response format"""
 
     success: bool = Field(..., description="Whether the request was successful")
