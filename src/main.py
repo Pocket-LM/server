@@ -11,13 +11,14 @@ logger = get_logger(__name__)
 
 @asynccontextmanager
 async def lifespan(_: FastAPI):
+    """Manages application startup and shutdown events."""
     logger.info("PocketLM Server is starting up...")
     yield
     logger.info("PocketLM Server is shutting down...")
 
 
 def create_application() -> FastAPI:
-    """Initialize the FastAPI application with settings and lifespan events."""
+    """Sets up and returns the main FastAPI application instance."""
     application = FastAPI(
         title=settings.NAME, version=settings.VERSION, lifespan=lifespan
     )
@@ -43,6 +44,7 @@ app = create_application()
 # Health check endpoint
 @app.get("/health", summary="Health Check")
 async def health_check():
+    """Provides a simple health check endpoint."""
     return {
         "success": True,
         "status": "success",

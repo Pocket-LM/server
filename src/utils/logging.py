@@ -48,9 +48,7 @@ watchfiles_logger.propagate = False
 
 
 def get_logger(name: str) -> logging.Logger:
-    """
-    This function returns a logger instance with the specified name.
-    """
+    """Returns a configured logger instance for a given module."""
     logger = getLogger(name)
     logger.setLevel(logging.INFO)
     return logger

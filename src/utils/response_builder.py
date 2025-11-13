@@ -13,7 +13,7 @@ class ResponseBuilder:
         message: str = "Request successful",
         data: Any = None,
     ) -> JSONResponse:
-        """Create a success response"""
+        """Builds a standardized successful API response."""
         response = ApiResponse(
             success=True,
             status=ResponseStatus.SUCCESS,
@@ -31,7 +31,7 @@ class ResponseBuilder:
         message: str = "An error occurred",
         data: Any = None,
     ) -> JSONResponse:
-        """Create an error response"""
+        """Builds a standardized error API response."""
         response = ApiResponse(
             success=False,
             status=ResponseStatus.ERROR,
@@ -48,7 +48,7 @@ class ResponseBuilder:
         message: str = "Request completed with warnings",
         data: Any = None,
     ) -> JSONResponse:
-        """Create a warning response"""
+        """Builds a standardized warning API response."""
         response = ApiResponse(
             success=True,
             status=ResponseStatus.WARNING,

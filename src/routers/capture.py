@@ -11,7 +11,7 @@ async def capture_knowledge(
     body: Annotated[KnowledgeCaptureRequest, Form(...)],
 ):
     """
-    Capture knowledge from a URL, a text selection, or a PDF file.
+    API endpoint to capture knowledge from a URL, text, or PDF.
     """
     try:
         result = await handle_knowledge_capture(
