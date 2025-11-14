@@ -21,6 +21,10 @@ class Settings(BaseSettings):
     OLLAMA_EMBEDDING_MODEL: str = "<your-ollama-embedding-model>"
     OLLAMA_LLM_MODEL: str = "<your-ollama-llm-model>"
 
+    # PGVector tables names
+    COLLECTIONS_TABLE: str = "<your-collections-table-name>"
+    EMBEDDINGS_TABLE: str = "<your-embeddings-table-name>"
+
     model_config = SettingsConfigDict(
         env_file=".env",
         env_file_encoding="utf-8",

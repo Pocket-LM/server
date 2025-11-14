@@ -22,3 +22,6 @@ logs/
 GEMINI.md
 CLAUDE.md
 NOTE.md
+
+# Temporary files/folders
+tmp/

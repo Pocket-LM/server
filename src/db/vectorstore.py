@@ -17,3 +17,20 @@ def get_vector_store() -> PGVector:
             "about": "Default collection provided by PocketLM",
         },
     )
+
+
+async def ensure_vector_store_initialized():
+    """Ensures that the vector store is initialized."""
+    vector_store = get_vector_store()
+    await vector_store.acreate_collection()
+
+    """    
+    TODO: Fix this function to properly create tables if not exists. Currently, tables are not being created as expected.
+
+    async with get_async_session() as session:
+        vector_store = get_vector_store()
+        await vector_store.acreate_tables_if_not_exists()
+
+        await session.commit()
+        await session.aclose()
+    """
