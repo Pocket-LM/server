@@ -1,5 +1,6 @@
 from langchain_postgres import PGVector
-from langchain_ollama import OllamaEmbeddings
+from langchain_google_genai import GoogleGenerativeAIEmbeddings
+from pydantic import SecretStr
 from src.configs import settings
 from src.utils.logging import get_logger
 from .session import get_async_engine
@@ -8,10 +9,13 @@ logger = get_logger(__name__)
 
 
 def get_vector_store() -> PGVector:
-    """Initializes and returns a PGVector store instance."""
     return PGVector(
-        embeddings=OllamaEmbeddings(model=settings.OLLAMA_EMBEDDING_MODEL),
+        embeddings=GoogleGenerativeAIEmbeddings(
+            google_api_key=SecretStr(settings.GEMINI_API_KEY),
+            model=settings.GEMINI_EMBEDDING_MODEL,
+        ),
         connection=get_async_engine(),
+        embedding_length=1536,
         collection_name="default",
         collection_metadata={
             "about": "Default collection provided by PocketLM",

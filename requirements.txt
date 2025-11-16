@@ -733,6 +733,7 @@ langchain-core==1.0.4 \
     # via
     #   langchain-ollama
     #   langchain-postgres
+    #   langchain-pymupdf4llm
     #   langchain-text-splitters
     #   langgraph
     #   langgraph-checkpoint
@@ -745,6 +746,10 @@ langchain-ollama==1.0.0 \
 langchain-postgres==0.0.16 \
     --hash=sha256:a7375cf9fc9b6965efc207dbcc959424e96b8ffe75d5ced6055676d2613f8d37 \
     --hash=sha256:d09aa4ea77ee8600a9ff64de9c185fb558aa388c816c7be04dd4559c878530b7
+    # via server
+langchain-pymupdf4llm==0.5.0 \
+    --hash=sha256:a43310d2c883cb0e21715eb42d599fa767734c1f803ce4510ad1aa09d03a56ec \
+    --hash=sha256:ed528a31506324e75dd9def0d9ae0c906cfc146cedb9c573afe3ace5e2e73450
     # via server
 langchain-text-splitters==1.0.0 \
     --hash=sha256:d8580a20ad7ed10b432feb273e5758b2cc0902d094919629cec0e1ad691a6744 \
@@ -759,8 +764,13 @@ langgraph-checkpoint==3.0.1 \
     --hash=sha256:9b04a8d0edc0474ce4eaf30c5d731cee38f11ddff50a6177eead95b5c4e4220b
     # via
     #   langgraph
+    #   langgraph-checkpoint-postgres
     #   langgraph-prebuilt
     #   server
+langgraph-checkpoint-postgres==3.0.1 \
+    --hash=sha256:4ff0f04a70ce8f5b49d373f521eba97ccf0bb61181de1535e5d91e99db2ce7da \
+    --hash=sha256:f79eb588b328f05d715c7ed35d20895cd0a126b524f95edbbebedc4a595f43dd
+    # via server
 langgraph-prebuilt==1.0.2 \
     --hash=sha256:9896dbabf04f086eb59df4294f54ab5bdb21cd78e27e0a10e695dffd1cc6097d \
     --hash=sha256:d9499f7c449fb637ee7b87e3f6a3b74095f4202053c74d33894bd839ea4c57c7
@@ -1066,6 +1076,7 @@ orjson==3.11.4 \
     --hash=sha256:f28485bdca8617b79d44627f5fb04336897041dfd9fa66d383a49d09d86798bc \
     --hash=sha256:f2cf4dfaf9163b0728d061bebc1e08631875c51cd30bf47cb9e3293bfbd7dcd5
     # via
+    #   langgraph-checkpoint-postgres
     #   langgraph-sdk
     #   langsmith
     #   server
@@ -1284,6 +1295,7 @@ psycopg==3.2.12 \
     --hash=sha256:8a1611a2d4c16ae37eada46438be9029a35bb959bb50b3d0e1e93c0f3d54c9ee
     # via
     #   langchain-postgres
+    #   langgraph-checkpoint-postgres
     #   server
 psycopg-binary==3.2.12 ; implementation_name != 'pypy' \
     --hash=sha256:095ccda59042a1239ac2fefe693a336cb5cecf8944a8d9e98b07f07e94e2b78d \
@@ -1312,6 +1324,7 @@ psycopg-pool==3.2.7 \
     --hash=sha256:a77d531bfca238e49e5fb5832d65b98e69f2c62bfda3d2d4d833696bdc9ca54b
     # via
     #   langchain-postgres
+    #   langgraph-checkpoint-postgres
     #   server
 pycparser==2.23 ; implementation_name != 'PyPy' and platform_python_implementation != 'PyPy' \
     --hash=sha256:78816d4f24add8f10a06d6f05b4d424ad9e96cfebf68a4ddc99c65c0720d00c2 \
@@ -1398,6 +1411,19 @@ pygments==2.19.2 \
     # via
     #   rich
     #   server
+pymupdf==1.26.6 \
+    --hash=sha256:617ba69e02c44f0da1c0e039ea4a26cf630849fd570e169c71daeb8ac52a81d6 \
+    --hash=sha256:6844cd2396553c0fa06de4869d5d5ecb1260e6fc3b9d85abe8fa35f14dd9d688 \
+    --hash=sha256:7777d0b7124c2ebc94849536b6a1fb85d158df3b9d873935e63036559391534c \
+    --hash=sha256:8f3ef05befc90ca6bb0f12983200a7048d5bff3e1c1edef1bb3de60b32cb5274 \
+    --hash=sha256:a2b4531cd4ab36d6f1f794bb6d3c33b49bda22f36d58bb1f3e81cbc10183bd2b \
+    --hash=sha256:ce02ca96ed0d1acfd00331a4d41a34c98584d034155b06fd4ec0f051718de7ba \
+    --hash=sha256:e46f320a136ad55e5219e8f0f4061bdf3e4c12b126d2740d5a49f73fae7ea176
+    # via pymupdf4llm
+pymupdf4llm==0.1.9 \
+    --hash=sha256:0bbed66debce95998797bd47871c9433d28367852de6c13061871c220c04f51d \
+    --hash=sha256:58f3dca8b6c8bdcfa6341be6aca6a4cce97dfb94565bb666f809310c22792660
+    # via langchain-pymupdf4llm
 pyopenssl==25.3.0 \
     --hash=sha256:1fda6fc034d5e3d179d39e59c1895c9faeaf40a79de5fc4cbbfbe0d36f4a77b6 \
     --hash=sha256:c981cb0a3fd84e8602d7afc209522773b94c1c2446a3c710a75b06fe1beae329
@@ -1822,6 +1848,10 @@ starlette==0.49.3 \
     # via
     #   fastapi
     #   server
+tabulate==0.9.0 \
+    --hash=sha256:0095b12bf5966de529c0feb1fa08671671b3368eec77d7ef7ab114be2c068b3c \
+    --hash=sha256:024ca478df22e9340661486f85298cff5f6dcdba14f3813e8830015b9ed1948f
+    # via pymupdf4llm
 tenacity==9.1.2 \
     --hash=sha256:1169d376c297e7de388d18b4481760d478b0e99a777cad3a9c86e556f4b697cb \
     --hash=sha256:f77bf36710d8b73a50b2dd155c97b870017ad21afe6ab300326b0371b3b05138
