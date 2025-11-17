@@ -7,6 +7,7 @@ from mem0.configs.base import (
     RerankerConfig,
 )
 from contextlib import asynccontextmanager
+
 from src.configs.settings import settings
 
 
@@ -15,7 +16,7 @@ config = MemoryConfig(
         provider="pgvector",
         config={
             "connection_string": settings.PLAIN_DATABASE_URL,
-            "embedding_model_dims": 1536,
+            "embedding_model_dims": settings.GEMINI_EMBEDDING_DIMS,
         },
     ),
     llm=LlmConfig(
@@ -30,7 +31,7 @@ config = MemoryConfig(
         config={
             "model": settings.GEMINI_EMBEDDING_MODEL,
             "api_key": settings.GEMINI_API_KEY,
-            "embedding_dims": 1536,
+            "embedding_dims": settings.GEMINI_EMBEDDING_DIMS,
         },
     ),
     # reranker=RerankerConfig(

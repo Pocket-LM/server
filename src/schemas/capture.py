@@ -1,6 +1,7 @@
 from typing import Literal, Optional, Dict
 from pydantic import HttpUrl, Field
 from fastapi import UploadFile
+
 from src.schemas.custom_base_model import CamelCaseBaseModel
 
 CaptureType = Literal["selection", "url", "pdf"]

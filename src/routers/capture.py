@@ -1,5 +1,6 @@
 from typing import Annotated
 from fastapi import APIRouter, Form
+
 from src.apis.capture import handle_knowledge_capture
 from src.schemas.capture import KnowledgeCaptureRequest
 from src.utils.response_builder import ResponseBuilder

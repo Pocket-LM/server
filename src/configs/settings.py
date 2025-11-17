@@ -36,6 +36,7 @@ class Settings(BaseSettings):
     GEMINI_API_KEY: str = "<your-google-api-key>"
     GEMINI_EMBEDDING_MODEL: str = "<your-google-embedding-model>"
     GEMINI_LLM_MODEL: str = "<your-google-llm-model>"
+    GEMINI_EMBEDDING_DIMS: int = 3072
 
     # Mem0 configuration
     MEM0_API_KEY: str = "<your-mem0-api-key>"

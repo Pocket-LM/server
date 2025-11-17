@@ -1,7 +1,8 @@
 from fastapi import APIRouter
-from .capture import capture_router
-from .collection import collection_router
-from .chat import chat_router
+
+from src.routers.capture import capture_router
+from src.routers.collection import collection_router
+from src.routers.chat import chat_router
 
 entry_router = APIRouter()
 

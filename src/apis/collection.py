@@ -1,6 +1,7 @@
 from typing import Sequence
 from sqlalchemy import text
 from fastapi import HTTPException
+
 from src.configs.settings import settings
 from src.db.session import get_async_session
 from src.db.vectorstore import get_vector_store

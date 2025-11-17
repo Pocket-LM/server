@@ -1,9 +1,10 @@
 from langchain_postgres import PGVector
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from pydantic import SecretStr
+
 from src.configs import settings
 from src.utils.logging import get_logger
-from .session import get_async_engine
+from src.db.session import get_async_engine
 
 logger = get_logger(__name__)
 
@@ -15,7 +16,7 @@ def get_vector_store() -> PGVector:
             model=settings.GEMINI_EMBEDDING_MODEL,
         ),
         connection=get_async_engine(),
-        embedding_length=1536,
+        embedding_length=settings.GEMINI_EMBEDDING_DIMS,
         collection_name="default",
         collection_metadata={
             "about": "Default collection provided by PocketLM",

@@ -1,6 +1,7 @@
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+
 from src.configs import settings
 from src.routers import entry_router
 from src.utils.logging import get_logger

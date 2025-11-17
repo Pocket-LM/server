@@ -1,6 +1,7 @@
 from enum import Enum
 from typing import Any, Optional
 from pydantic import Field
+
 from src.schemas.custom_base_model import CamelCaseBaseModel
 
 

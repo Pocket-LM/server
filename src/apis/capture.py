@@ -9,6 +9,7 @@ from pydantic import HttpUrl
 from langchain_core.documents import Document
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_pymupdf4llm import PyMuPDF4LLMLoader
+
 from src.configs import crawler_config
 from src.schemas.capture import KnowledgeExtractionHelperOutput
 from src.db.vectorstore import get_vector_store
