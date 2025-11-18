@@ -4,7 +4,6 @@ from mem0.configs.base import (
     VectorStoreConfig,
     LlmConfig,
     EmbedderConfig,
-    RerankerConfig,
 )
 from contextlib import asynccontextmanager
 
@@ -34,13 +33,6 @@ config = MemoryConfig(
             "embedding_dims": settings.GEMINI_EMBEDDING_DIMS,
         },
     ),
-    # reranker=RerankerConfig(
-    #     provider="huggingface",
-    #     config={
-    #         "model": settings.MEM0_RERANKER_MODEL,
-    #         "device": "cpu",
-    #     },
-    # ),
 )
 
 
