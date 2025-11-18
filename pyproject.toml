@@ -146,4 +146,5 @@ dependencies = [
     "zstandard==0.25.0",
     "mem0ai>=1.0.1",
     "google-genai>=1.50.1",
+    "cohere>=5.20.0",
 ]

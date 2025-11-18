@@ -4,6 +4,7 @@ from mem0.configs.base import (
     VectorStoreConfig,
     LlmConfig,
     EmbedderConfig,
+    RerankerConfig,
 )
 from contextlib import asynccontextmanager
 
@@ -31,6 +32,16 @@ config = MemoryConfig(
             "model": settings.GEMINI_EMBEDDING_MODEL,
             "api_key": settings.GEMINI_API_KEY,
             "embedding_dims": settings.GEMINI_EMBEDDING_DIMS,
+        },
+    ),
+    reranker=RerankerConfig(
+        provider="cohere",
+        config={
+            "model": settings.COHERE_RERANKING_MODEL,
+            "api_key": settings.COHERE_API_KEY,
+            "top_k": 10,
+            "return_documents": False,
+            "max_chunks_per_doc": None,
         },
     ),
 )
