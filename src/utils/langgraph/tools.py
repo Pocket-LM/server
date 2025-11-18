@@ -6,7 +6,7 @@ from src.configs.memzero import get_memory
 
 
 @tool(response_format="content_and_artifact")
-async def retrieve_docs(query: str):
+async def retrieve_docs(query: str) -> tuple[str, list]:
     """
     Retrieve relevant context documents from the vector database.
     Use this for factual information, procedures, or document-based knowledge.
@@ -19,7 +19,7 @@ async def retrieve_docs(query: str):
     """
     vector_store = get_vector_store()
     retriever = vector_store.as_retriever(
-        search_type="similarity", search_kwargs={"k": 20}
+        search_type="similarity", search_kwargs={"k": 5}
     )
     docs = await retriever.ainvoke(query)
 
@@ -31,7 +31,7 @@ async def retrieve_docs(query: str):
 
 
 @tool(response_format="content_and_artifact")
-async def retrieve_memory(query: str):
+async def retrieve_memory(query: str) -> tuple[str, dict]:
     """
     Retrieve relevant information from Mem0 memory about the user.
     Use this for personal information, preferences, or past conversation context.

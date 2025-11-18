@@ -7,7 +7,10 @@ from src.configs.settings import settings
 from src.utils.langgraph.agent import get_langgraph_agent
 
 
-async def run_agent_message(graph, config: RunnableConfig, query: str) -> None:
+from typing import Any
+
+
+async def run_agent_message(graph: Any, config: RunnableConfig, query: str) -> None:
     """
     Send a message to the agent and stream the response.
 
@@ -21,7 +24,7 @@ async def run_agent_message(graph, config: RunnableConfig, query: str) -> None:
         additional_kwargs={"generated_at": datetime.now(timezone.utc).isoformat()},
     )
 
-    async for message_chunk, metadata in graph.astream(
+    async for message_chunk in graph.astream(
         {"messages": [human], "history": [human]},
         config,
         stream_mode="messages",
@@ -50,11 +53,7 @@ async def main():
         ]
 
         for query in test_queries:
-            print(f"\n{'='*60}")
-            print(f"Query: {query}")
-            print("=" * 60)
             await run_agent_message(graph, config, query)
-            print()  # New line after response
 
 
 if __name__ == "__main__":
