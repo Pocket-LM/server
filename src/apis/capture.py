@@ -148,8 +148,8 @@ async def _save_to_vector_db(
 
     # third -> split the documents into chunks
     splitter = RecursiveCharacterTextSplitter(
-        chunk_size=1000,
-        chunk_overlap=200,
+        chunk_size=100,
+        chunk_overlap=20,
         add_start_index=True,
     )
     split_docs = splitter.split_documents(docs)
