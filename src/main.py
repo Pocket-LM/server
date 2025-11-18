@@ -5,6 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from src.configs import settings
 from src.routers import entry_router
 from src.utils.logging import get_logger
+import src.configs.glob_ctx  # noqa: F401
 
 # Initialize the logger
 logger = get_logger(__name__)
