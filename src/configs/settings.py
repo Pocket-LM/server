@@ -42,6 +42,10 @@ class Settings(BaseSettings):
     MEM0_API_KEY: str = "<your-mem0-api-key>"
     MEM0_RERANKER_MODEL: str = "<your-memo-hf-reranker-model>"
 
+    # Cohere configuration
+    COHERE_API_KEY: str = "<your-cohere-api-key>"
+    COHERE_RERANKING_MODEL: str = "<your-cohere-embedding-model>"
+
     model_config = SettingsConfigDict(
         env_file=".env",
         env_file_encoding="utf-8",

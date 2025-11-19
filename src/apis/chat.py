@@ -10,6 +10,12 @@ from src.utils.langgraph.agent import get_checkpoint_saver
 
 
 async def handle_chat_history():
+    """
+    Retrieves and filters the chat history for the current session.
+
+    Returns:
+        List[AnyMessage]: A list of human and AI messages from the chat history.
+    """
     async with get_langgraph_agent(
         user_id=settings.DEFAULT_USER_ID,
         thread_id=settings.DEFAULT_SESSION_ID,
@@ -25,11 +31,28 @@ async def handle_chat_history():
 
 
 async def handle_chat_message(collection_name: str, user_query: str):
+    """
+    Processes a user's chat message, interacts with the LangGraph agent,
+    and returns the AI's response.
+
+    Args:
+        collection_name (str): The name of the collection to use for context.
+        user_query (str): The user's message.
+
+    Returns:
+        AnyMessage: The AI's response message.
+
+    Raises:
+        HTTPException: If an error occurs during message processing.
+    """
     ctx.set(collection_name)
 
     human_msg = HumanMessage(
         content=user_query,
-        additional_kwargs={"generated_at": datetime.now(timezone.utc).isoformat()},
+        additional_kwargs={
+            "generated_at": datetime.now(timezone.utc).isoformat(),
+            "collection_name": collection_name,
+        },
     )
 
     async with get_langgraph_agent(
@@ -57,6 +80,12 @@ async def handle_chat_message(collection_name: str, user_query: str):
 
 
 async def handle_clear_chat():
+    """
+    Clears the chat history for the current session.
+
+    Raises:
+        HTTPException: If an error occurs during chat history deletion.
+    """
     try:
         async with get_checkpoint_saver() as checkpoint_saver:
             await checkpoint_saver.adelete_thread(thread_id=settings.DEFAULT_SESSION_ID)

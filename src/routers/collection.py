@@ -18,9 +18,6 @@ async def list_collections():
     """
     API endpoint to list all collections (knowledge bases).
     """
-    """
-    API endpoint to list all collections aka knowledge bases.
-    """
     try:
         collections = await handle_collection_listing()
         return ResponseBuilder.success(
@@ -38,9 +35,6 @@ async def create_collection(
     """
     API endpoint to create a new collection (knowledge base).
     """
-    """
-    API endpoint to create a new collection aka knowledge base.
-    """
     try:
         await handle_collection_creation(body.name)
         return ResponseBuilder.success(
@@ -55,9 +49,6 @@ async def create_collection(
 async def delete_collection(body: Annotated[CollectionCreateRequest, Body(...)]):
     """
     API endpoint to delete a collection (knowledge base).
-    """
-    """
-    API endpoint to delete a collection aka knowledge base.
     """
     try:
         await handle_collection_deletion(body.name)

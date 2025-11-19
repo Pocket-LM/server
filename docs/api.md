@@ -192,3 +192,124 @@ The request must be of type `application/json`.
   "detail": "Collection with name '{name}' does not exist."
 }
 ```
+
+---
+
+# Chat
+
+This document provides details for the chat-related API endpoints.
+
+## `GET /chat/history`
+
+This endpoint retrieves the chat history for the current session.
+
+### Request
+
+No request body is required.
+
+### Response
+
+**Success (Status 200)**
+
+```json
+{
+  "status": "success",
+  "message": "Chat history retrieved successfully",
+  "data": [
+    {
+      "messageContent": "Hi, my name is Julian.",
+      "type": "human",
+      "collectionName": "your-collection-name",
+    },
+    {
+      "messageContent": "Hello Julian! How can I help you today?",
+      "type": "ai",
+      "collectionName": null,
+    }
+  ]
+}
+```
+
+**Error (Status 4xx/5xx)**
+
+```json
+{
+  "detail": "Error message describing the issue."
+}
+```
+
+---
+
+## `POST /chat/message`
+
+This endpoint processes a user's chat message and returns the AI's response.
+
+### Request
+
+The request must be of type `application/json`.
+
+**Body:**
+
+```json
+{
+  "userQuery": "What is my name?",
+  "collectionName": "my_knowledge_base"
+}
+```
+
+| Field          | Type     | Description                               | Required |
+| -------------- | -------- | ----------------------------------------- | -------- |
+| `userQuery`    | `string` | The user's message.                       | Yes      |
+| `collectionName` | `string` | The name of the collection to use for context. | Yes      |
+
+### Response
+
+**Success (Status 200)**
+
+```json
+{
+  "status": "success",
+  "message": "Message processed successfully",
+  "data": {
+    "messageContent": "Your name is Julian."
+  }
+}
+```
+
+**Error (Status 4xx/5xx)**
+
+```json
+{
+  "detail": "Error message describing the issue."
+}
+```
+
+---
+
+## `DELETE /chat/clear`
+
+This endpoint clears the chat history for the current session.
+
+### Request
+
+No request body is required.
+
+### Response
+
+**Success (Status 200)**
+
+```json
+{
+  "status": "success",
+  "message": "Chat history cleared successfully",
+  "data": null
+}
+```
+
+**Error (Status 4xx/5xx)**
+
+```json
+{
+  "detail": "Error message describing the issue."
+}
+```
