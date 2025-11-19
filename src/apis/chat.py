@@ -49,7 +49,10 @@ async def handle_chat_message(collection_name: str, user_query: str):
 
     human_msg = HumanMessage(
         content=user_query,
-        additional_kwargs={"generated_at": datetime.now(timezone.utc).isoformat()},
+        additional_kwargs={
+            "generated_at": datetime.now(timezone.utc).isoformat(),
+            "collection_name": collection_name,
+        },
     )
 
     async with get_langgraph_agent(

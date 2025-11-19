@@ -218,11 +218,13 @@ No request body is required.
   "data": [
     {
       "messageContent": "Hi, my name is Julian.",
-      "type": "human"
+      "type": "human",
+      "collectionName": "your-collection-name",
     },
     {
       "messageContent": "Hello Julian! How can I help you today?",
-      "type": "ai"
+      "type": "ai",
+      "collectionName": null,
     }
   ]
 }

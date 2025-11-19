@@ -21,6 +21,7 @@ class ChatMessageResponse(CamelCaseBaseModel):
 
 class ChatHistoryResponse(ChatMessageResponse):
     type: Literal["human", "ai"]
+    knowledge_base: str | None = None
 
 
 @chat_router.get("/history")
@@ -34,9 +35,15 @@ async def chat_history():
     try:
         history = await handle_chat_history()
         res_data = [
-            ChatHistoryResponse(message_content=msg.content, type=msg.type).model_dump(
-                by_alias=True
-            )
+            ChatHistoryResponse(
+                message_content=msg.content,
+                type=msg.type,
+                knowledge_base=(
+                    msg.additional_kwargs.get("collection_name")
+                    if msg.additional_kwargs
+                    else None
+                ),
+            ).model_dump(by_alias=True)
             for msg in (history if history else [])
         ]
 
