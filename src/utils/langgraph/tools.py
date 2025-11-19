@@ -6,13 +6,8 @@ from src.configs.memzero import get_memory
 from src.configs.cohere import cohere_ranker
 
 
-<<<<<<< HEAD
-@tool(response_format="content_and_artifact")
-async def retrieve_docs(query: str) -> tuple[str, list]:
-=======
 @tool(response_format="content")
 async def retrieve_docs(query: str) -> str:
->>>>>>> eed57bbd488c87162e1ca2c5588b39a9ca109dce
     """
     Retrieve relevant context documents from the vector database.
     Use this for factual information, procedures, or document-based knowledge.
@@ -25,11 +20,7 @@ async def retrieve_docs(query: str) -> str:
     """
     vector_store = get_vector_store()
     retriever = vector_store.as_retriever(
-<<<<<<< HEAD
-        search_type="similarity", search_kwargs={"k": 5}
-=======
         search_type="similarity", search_kwargs={"k": 50}
->>>>>>> eed57bbd488c87162e1ca2c5588b39a9ca109dce
     )
     docs = await retriever.ainvoke(query)
     unranked_content = [doc.page_content for doc in docs]
@@ -53,13 +44,8 @@ async def retrieve_docs(query: str) -> str:
     )
 
 
-<<<<<<< HEAD
-@tool(response_format="content_and_artifact")
-async def retrieve_memory(query: str) -> tuple[str, dict]:
-=======
 @tool(response_format="content")
 async def retrieve_memory(query: str) -> str:
->>>>>>> eed57bbd488c87162e1ca2c5588b39a9ca109dce
     """
     Retrieve relevant information from Mem0 memory about the user.
     Use this for personal information, preferences, or past conversation context.
