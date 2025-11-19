@@ -10,7 +10,6 @@ from ragas.embeddings import LangchainEmbeddingsWrapper
 from ragas.metrics import (
     ResponseRelevancy,
     Faithfulness,
-    MetricType,
     LLMContextPrecisionWithReference,
     LLMContextRecall,
 )
