@@ -40,7 +40,6 @@ class Settings(BaseSettings):
 
     # Mem0 configuration
     MEM0_API_KEY: str = "<your-mem0-api-key>"
-    MEM0_RERANKER_MODEL: str = "<your-memo-hf-reranker-model>"
 
     # Cohere configuration
     COHERE_API_KEY: str = "<your-cohere-api-key>"

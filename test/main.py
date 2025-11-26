@@ -217,8 +217,10 @@ async def generate_multi_turn_dts():
     return True
 
 
-async def eval_single_turn():
-    with open("test/data/single_turn_dts.json", "r") as f:
+async def eval_single_turn(name: str = ""):
+    with open(
+        f"test/data/{name + "_" if len(name) > 0 else ""}single_turn_dts.json", "r"
+    ) as f:
         generated = json.load(f)
 
     result = evaluate(
@@ -244,11 +246,16 @@ async def eval_single_turn():
         ],
     )
 
-    result.to_pandas().to_json("test/result/single_turn_eval_results.json", indent=2)
+    result.to_pandas().to_json(
+        f"test/result/{name + "_" if len(name) > 0 else ""}single_turn_eval_results.json",
+        indent=2,
+    )
 
 
-async def eval_multi_turn():
-    with open("test/data/multi_turn_dts.json", "r") as f:
+async def eval_multi_turn(name: str = ""):
+    with open(
+        f"test/data/{name + "_" if len(name) > 0 else ""}multi_turn_dts.json", "r"
+    ) as f:
         generated = json.load(f)
 
     result = evaluate(
@@ -274,7 +281,10 @@ async def eval_multi_turn():
         ],
     )
 
-    result.to_pandas().to_json("test/result/multi_turn_eval_results.json", indent=2)
+    result.to_pandas().to_json(
+        f"test/result/{name + "_" if len(name) > 0 else ""}multi_turn_eval_results.json",
+        indent=2,
+    )
 
 
 async def main():
@@ -288,11 +298,11 @@ async def main():
     #     logger.info("Failed to generate multi turn dataset.")
     #     return
 
-    # await eval_single_turn()
+    # await eval_single_turn(name="notebooklm")
 
-    await eval_multi_turn()
+    # await eval_multi_turn(name="notebooklm")
 
-    pass
+    return
 
 
 if __name__ == "__main__":
